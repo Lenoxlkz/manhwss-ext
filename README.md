@@ -11,8 +11,14 @@ Repositorio personal de extensiones de fuente de manga en español para [Mihon](
 | LeerCapitulo | https://www.leercapitulo.co | SAFE |
 | Olympus Scanlation | https://olympusxyz.com | SAFE |
 | Ikigai Mangas (visor) | https://visorikigai.gettocaboca.com | MIXED |
+| ZonaTMO.org | https://zonatmo.org | MIXED |
+| LectorTmo.online | https://lectortmo.online | MIXED |
+| LectorTmo.vip | https://lectortmo.vip | MIXED |
+| Aedex | https://aedexnox.com | NSFW |
 
 > Nota Ikigai: los dominios `visualikigai.cmpunjabrashancard.pk` y `visualikigai.com` redirigen actualmente a `visor.ikigaiweb.lat`, que está caído (NXDOMAIN). El visor vivo es `visorikigai.gettocaboca.com` (el mismo que usa keiyoushi). Estos sitios rotan de dominio constantemente: la URL se puede cambiar desde los ajustes de la propia extensión (baseUrl personalizable) y la fuente incluye detección de dominio vigente vía `ikigaimangas.com`.
+
+> Nota ZonaTMO.org: la fuente de keiyoushi estaba rota — la biblioteca AJAX del sitio dejó de responder JSON (`{html: ...}`) y ahora devuelve la página HTML completa, con lo que búsqueda y populares crasheaban. Aquí se corrige con un parseo tolerante a ambos formatos; el resto de flujos (detalle, capítulos, lector, filtros) se validó en vivo contra el sitio.
 
 ## Instalación
 
@@ -51,6 +57,12 @@ src/es/manhwaweb/         # ManhwaWeb (API JSON en api.manhwaweb.com)
 src/es/leercapitulo/      # LeerCapitulo (HTML SSR con selectores lc-*)
 src/es/olympusscanlation/ # Olympus Scanlation (API JSON en olympusxyz.com/api)
 src/es/ikigaimangas/      # Ikigai Mangas visor (Qwik/HTML, baseUrl personalizable)
+src/es/zonatmoorg/        # ZonaTMO.org (Laravel custom; fix del parseo JSON→HTML de la biblioteca)
+src/es/lectortmoonline/   # LectorTmo.online (API JSON /api/mangas + /api/chapters)
+src/es/lectortmovip/      # LectorTmo.vip (WordPress admin-ajax con nonce MnArchive)
+src/es/aedex/             # Aedex (multisrc Catharsis: API firmada, lector XOR+descramble)
+lib-multisrc/catharsis/   # base del multisrc Catharsis (dependencia de aedex)
+lib/cronet, lib/cronetruntime/ # stack de red Chromium que usan las fuentes Catharsis
 core/                     # librería compartida de keiyoushi (network, utils, KeiSource)
 compiler/                 # procesador KSP que genera el entrypoint de la extensión
 lint-rules/               # reglas de lint
@@ -65,7 +77,11 @@ gradle/build-logic/       # plugins de build (kei.plugins.extension)
 - **LeerCapitulo**: HTML SSR con rate-limit (1 req/3s); filtros combinables con búsqueda por texto; lecturas con imágenes `data-src` (CDN ofuscado).
 - **Olympus Scanlation**: API JSON con caché en memoria de la lista de series (1 h), rankings paginados, slug map persistido en preferencias; baseUrl personalizable y detección de dominio via `olympus.pages.dev`.
 - **Ikigai Mangas**: sitio Qwik — búsqueda por texto vía protocolo Qwik (WebView captura `qfunc`), paginación de capítulos en paralelo; baseUrl personalizable + detección de dominio via `ikigaimangas.com`.
-- Las cuatro fuentes portadas conservan los IDs de fuente de keiyoushi (mismo `name`/`lang`/`versionId`), así que si migras desde las extensiones oficiales de keiyoushi a estas, tus favoritos e historial se mantienen. Recomendación: no tener instaladas a la vez las dos versiones de la misma fuente (IDs duplicados).
+- **ZonaTMO.org**: plataforma Laravel custom — biblioteca vía AJAX (`/biblioteca`), últimas subidas `/ultimas-subidas`, detalle `zt-hd__*`, capítulos por `view_uploads` y lector `#reader-wrap img.reader-image`. Corregido el parseo de la biblioteca (JSON→HTML).
+- **LectorTmo.online**: API JSON (`/api/mangas`, `/api/chapters`, `/api/genres` con filtrado de "géneros basura"); el CDN rechaza referer del sitio (headers sin Referer).
+- **LectorTmo.vip**: WordPress — listados por `admin-ajax.php` (`mn_archive_filter`) con nonce extraído de `/manga/` (con re-intento si expira, código 403); capítulos `#mn-chapters-list` y lector `main#reader-strip img`.
+- **Aedex**: multisrc Catharsis (`/api/backend`, headers `System: aedex` + `X-FK-Sistema`) — lector gratis con pase por IP (`ax_rp`), countdown WebSocket con firma ECDSA P-256, imágenes XOR-mascadas y descramble 8x8. Cadena completa: catharsis multisrc + lib/cronet + cronetruntime.
+- Las 4 fuentes anteriores (ManhwaWeb, LeerCapitulo, Olympus, Ikigai) conservan los IDs de fuente de keiyoushi para migrar favoritos sin perder nada; no conviene tener instaladas a la vez ambas versiones de la misma fuente. Las de esta tanda (ZonaTMO.org, LectorTmo.*, Aedex) usan nombres propios sin sufijo "(unoriginal)", con IDs independientes.
 
 ## Créditos y licencia
 
