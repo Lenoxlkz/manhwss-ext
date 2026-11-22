@@ -1,8 +1,18 @@
-# ManhwaSS — Extensión de Mihon/Aniyomi para manhwass.lat
+# Extensiones de Mihon/Aniyomi — fuentes en español
 
-Extensión de fuente de manga en español para [Mihon](https://github.com/mihonapp/mihon), [Aniyomi](https://github.com/aniyomiorg/aniyomi) y forks compatibles (Komikku, TachiyomiSY...), construida con el mismo sistema de build que [keiyoushi/extensions-source](https://github.com/keiyoushi/extensions-source) (licencia Apache 2.0; el sistema de build, `core` y utilidades provienen de ese repositorio).
+Repositorio personal de extensiones de fuente de manga en español para [Mihon](https://github.com/mihonapp/mihon), [Aniyomi](https://github.com/aniyomiorg/aniyomi) y forks compatibles (Komikku, TachiyomiSY...), construido con el mismo sistema de build que [keiyoushi/extensions-source](https://github.com/keiyoushi/extensions-source) (licencia Apache 2.0; el sistema de build, `core` y utilidades provienen de ese repositorio).
 
-**Sitio fuente:** https://manhwass.lat — plataforma Next.js (misma base que ManhwaShot), catálogo mixto con contenido +18 (la fuente se declara `ContentWarning.MIXED`).
+**Fuentes incluidas (todas en español):**
+
+| Extensión | Sitio | Contenido |
+|---|---|---|
+| ManhwaSS | https://manhwass.lat | MIXED (+18 entre el catálogo) |
+| ManhwaWeb | https://manhwaweb.com | MIXED |
+| LeerCapitulo | https://www.leercapitulo.co | SAFE |
+| Olympus Scanlation | https://olympusxyz.com | SAFE |
+| Ikigai Mangas (visor) | https://visorikigai.gettocaboca.com | MIXED |
+
+> Nota Ikigai: los dominios `visualikigai.cmpunjabrashancard.pk` y `visualikigai.com` redirigen actualmente a `visor.ikigaiweb.lat`, que está caído (NXDOMAIN). El visor vivo es `visorikigai.gettocaboca.com` (el mismo que usa keiyoushi). Estos sitios rotan de dominio constantemente: la URL se puede cambiar desde los ajustes de la propia extensión (baseUrl personalizable) y la fuente incluye detección de dominio vigente vía `ikigaimangas.com`.
 
 ## Instalación
 
@@ -22,9 +32,9 @@ Los APK se firman siempre con la misma clave (keystore secreto del repo), por lo
 
 ## Compilación
 
-GitHub Actions compila la extensión en cada push a `main` y publica el resultado en la branch `repo` (`index.min.json`, `index.json`, `index.pb`, `repo.json`, APK y JAR). El APK también queda como artefacto del workflow.
+GitHub Actions compila todas las fuentes en cada push a `main` y publica el resultado en la branch `repo` (`index.min.json`, `index.json`, `index.pb`, `repo.json`, APK y JAR). Los APK también quedan como artefactos del workflow.
 
-Compilación manual:
+Compilación manual (una fuente concreta):
 
 ```bash
 ./gradlew :src:es:manhwass:assembleRelease
@@ -36,21 +46,26 @@ Requiere JDK 17+ (CI usa 25) y el SDK de Android (compileSdk 37).
 ## Estructura
 
 ```
-src/es/manhwass/    # la fuente (ManhwaSS.kt, Dto.kt, Filters.kt)
-core/               # librería compartida de keiyoushi (network, utils, KeiSource)
-compiler/           # procesador KSP que genera el entrypoint de la extensión
-lint-rules/         # reglas de lint
-gradle/build-logic/ # plugins de build (kei.plugins.extension)
-.github/            # workflow de CI y generación del índice del repositorio
+src/es/manhwass/          # ManhwaSS (manhwass.lat — SPA Next.js, código propio)
+src/es/manhwaweb/         # ManhwaWeb (API JSON en api.manhwaweb.com)
+src/es/leercapitulo/      # LeerCapitulo (HTML SSR con selectores lc-*)
+src/es/olympusscanlation/ # Olympus Scanlation (API JSON en olympusxyz.com/api)
+src/es/ikigaimangas/      # Ikigai Mangas visor (Qwik/HTML, baseUrl personalizable)
+core/                     # librería compartida de keiyoushi (network, utils, KeiSource)
+compiler/                 # procesador KSP que genera el entrypoint de la extensión
+lint-rules/               # reglas de lint
+gradle/build-logic/       # plugins de build (kei.plugins.extension)
+.github/                  # workflow de CI y generación del índice del repositorio
 ```
 
 ## Detalles técnicos
 
-- La web es una SPA Next.js: los listados y la página de serie se parsean del HTML SSR con Jsoup; el lector del capítulo se obtiene del payload RSC (`extractNextJs<ReaderDto>`), que incluye la lista completa de imágenes y el flag de bloqueo VIP.
-- Fechas exactas de capítulos desde el payload (`dates`), formato relativo del SSR solo como respaldo visual.
-- Filtros: tipo (+18/BL/Shoujo/Manga), estado y géneros (se obtienen en vivo de `/explorar/`).
-- Búsqueda vía `/explorar/?q=`; popular = ranking histórico `/ranking/`; últimas = `/ultimas-actualizaciones/` (paginadas).
-- Búsqueda por URL: pega un enlace `https://manhwass.lat/manga/<slug>/` en el buscador de la fuente.
+- **ManhwaSS**: SPA Next.js — listados y ficha parseados del HTML SSR con Jsoup; lector desde el payload RSC (`extractNextJs`), con fechas exactas y capítulos VIP bloqueados (preferencia para mostrarlos). Búsqueda por URL soportada.
+- **ManhwaWeb**: API JSON (`api.manhwaweb.com`) con filtros completos (tipo, demografía, estado, erótico, géneros, orden); capítulos por "versiones" (con scanlators) y búsqueda por URL.
+- **LeerCapitulo**: HTML SSR con rate-limit (1 req/3s); filtros combinables con búsqueda por texto; lecturas con imágenes `data-src` (CDN ofuscado).
+- **Olympus Scanlation**: API JSON con caché en memoria de la lista de series (1 h), rankings paginados, slug map persistido en preferencias; baseUrl personalizable y detección de dominio via `olympus.pages.dev`.
+- **Ikigai Mangas**: sitio Qwik — búsqueda por texto vía protocolo Qwik (WebView captura `qfunc`), paginación de capítulos en paralelo; baseUrl personalizable + detección de dominio via `ikigaimangas.com`.
+- Las cuatro fuentes portadas conservan los IDs de fuente de keiyoushi (mismo `name`/`lang`/`versionId`), así que si migras desde las extensiones oficiales de keiyoushi a estas, tus favoritos e historial se mantienen. Recomendación: no tener instaladas a la vez las dos versiones de la misma fuente (IDs duplicados).
 
 ## Créditos y licencia
 

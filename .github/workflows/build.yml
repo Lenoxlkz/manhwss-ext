@@ -51,12 +51,18 @@ jobs:
           openssl dgst -sha256 -hex signing-cert.der | awk '{print $NF}' > fingerprint.txt
           cat fingerprint.txt
 
-      - name: Build extension
+      - name: Build extensions
         env:
           ALIAS: ${{ secrets.ALIAS }}
           KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-        run: ./gradlew :src:es:manhwass:assembleRelease :src:es:manhwass:lintRelease
+        run: |
+          MODULES=$(find src -mindepth 2 -maxdepth 2 -type d | sort | sed 's|^src|src:|; s|/|:|g')
+          TASKS=()
+          for module in $MODULES; do
+            TASKS+=("$module:assembleRelease" "$module:lintRelease")
+          done
+          ./gradlew "${TASKS[@]}"
 
       - name: Clean up signing key
         if: always()
@@ -67,9 +73,9 @@ jobs:
         with:
           name: extension-build
           path: |
-            src/es/manhwass/build/outputs/apk/release/*.apk
-            src/es/manhwass/build/outputs/jar/release/*.jar
-            src/es/manhwass/build/keiyoushi-source-info.json
+            src/**/build/outputs/apk/release/*.apk
+            src/**/build/outputs/jar/release/*.jar
+            src/**/build/keiyoushi-source-info.json
             fingerprint.txt
           retention-days: 7
 
