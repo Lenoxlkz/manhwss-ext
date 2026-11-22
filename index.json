@@ -1,0 +1,201 @@
+{
+  "name": "ManhwaSS Ext",
+  "badgeLabel": "MSS",
+  "signingKey": "f6426d1f446eec82ad6d4a165c444ba0dfca7428c2928b2da3430391572e8896",
+  "contact": {
+    "website": "https://github.com/Lenoxlkz/manhwss-ext"
+  },
+  "extensionList": {
+    "extensions": [
+      {
+        "name": "Aedex",
+        "packageName": "eu.kanade.tachiyomi.extension.es.aedex.lkz",
+        "resources": {
+          "apkUrl": "https://raw.githubusercontent.com/Lenoxlkz/manhwss-ext/repo/apk/tachiyomi-es.aedex.lkz-v1.6.3.apk",
+          "iconUrl": "https://raw.githubusercontent.com/Lenoxlkz/manhwss-ext/repo/icon/eu.kanade.tachiyomi.extension.es.aedex.lkz.png",
+          "jarUrl": "https://raw.githubusercontent.com/Lenoxlkz/manhwss-ext/repo/jar/tachiyomi-es.aedex.lkz-v1.6.3.jar"
+        },
+        "extensionLib": "1.6",
+        "versionCode": "106003",
+        "versionName": "1.6.3",
+        "contentWarning": "CONTENT_WARNING_NSFW",
+        "sources": [
+          {
+            "id": "4334604114708629478",
+            "name": "Aedex",
+            "language": "es",
+            "homeUrl": "https://aedexnox.com"
+          }
+        ]
+      },
+      {
+        "name": "Ikigai Mangas",
+        "packageName": "eu.kanade.tachiyomi.extension.es.ikigaimangas.lkz",
+        "resources": {
+          "apkUrl": "https://raw.githubusercontent.com/Lenoxlkz/manhwss-ext/repo/apk/tachiyomi-es.ikigaimangas.lkz-v1.6.1.apk",
+          "iconUrl": "https://raw.githubusercontent.com/Lenoxlkz/manhwss-ext/repo/icon/eu.kanade.tachiyomi.extension.es.ikigaimangas.lkz.png",
+          "jarUrl": "https://raw.githubusercontent.com/Lenoxlkz/manhwss-ext/repo/jar/tachiyomi-es.ikigaimangas.lkz-v1.6.1.jar"
+        },
+        "extensionLib": "1.6",
+        "versionCode": "106001",
+        "versionName": "1.6.1",
+        "contentWarning": "CONTENT_WARNING_MIXED",
+        "sources": [
+          {
+            "id": "7749406396573482811",
+            "name": "Ikigai Mangas",
+            "language": "es",
+            "homeUrl": "https://visorikigai.gettocaboca.com"
+          }
+        ]
+      },
+      {
+        "name": "LectorTmo.online",
+        "packageName": "eu.kanade.tachiyomi.extension.es.lectortmoonline.lkz",
+        "resources": {
+          "apkUrl": "https://raw.githubusercontent.com/Lenoxlkz/manhwss-ext/repo/apk/tachiyomi-es.lectortmoonline.lkz-v1.6.1.apk",
+          "iconUrl": "https://raw.githubusercontent.com/Lenoxlkz/manhwss-ext/repo/icon/eu.kanade.tachiyomi.extension.es.lectortmoonline.lkz.png",
+          "jarUrl": "https://raw.githubusercontent.com/Lenoxlkz/manhwss-ext/repo/jar/tachiyomi-es.lectortmoonline.lkz-v1.6.1.jar"
+        },
+        "extensionLib": "1.6",
+        "versionCode": "106001",
+        "versionName": "1.6.1",
+        "contentWarning": "CONTENT_WARNING_MIXED",
+        "sources": [
+          {
+            "id": "7497526697080467358",
+            "name": "LectorTmo.online",
+            "language": "es",
+            "homeUrl": "https://lectortmo.online"
+          }
+        ]
+      },
+      {
+        "name": "LectorTmo.vip",
+        "packageName": "eu.kanade.tachiyomi.extension.es.lectortmovip.lkz",
+        "resources": {
+          "apkUrl": "https://raw.githubusercontent.com/Lenoxlkz/manhwss-ext/repo/apk/tachiyomi-es.lectortmovip.lkz-v1.6.1.apk",
+          "iconUrl": "https://raw.githubusercontent.com/Lenoxlkz/manhwss-ext/repo/icon/eu.kanade.tachiyomi.extension.es.lectortmovip.lkz.png",
+          "jarUrl": "https://raw.githubusercontent.com/Lenoxlkz/manhwss-ext/repo/jar/tachiyomi-es.lectortmovip.lkz-v1.6.1.jar"
+        },
+        "extensionLib": "1.6",
+        "versionCode": "106001",
+        "versionName": "1.6.1",
+        "contentWarning": "CONTENT_WARNING_MIXED",
+        "sources": [
+          {
+            "id": "2746916934122088508",
+            "name": "LectorTmo.vip",
+            "language": "es",
+            "homeUrl": "https://lectortmo.vip"
+          }
+        ]
+      },
+      {
+        "name": "LeerCapitulo",
+        "packageName": "eu.kanade.tachiyomi.extension.es.leercapitulo.lkz",
+        "resources": {
+          "apkUrl": "https://raw.githubusercontent.com/Lenoxlkz/manhwss-ext/repo/apk/tachiyomi-es.leercapitulo.lkz-v1.6.1.apk",
+          "iconUrl": "https://raw.githubusercontent.com/Lenoxlkz/manhwss-ext/repo/icon/eu.kanade.tachiyomi.extension.es.leercapitulo.lkz.png",
+          "jarUrl": "https://raw.githubusercontent.com/Lenoxlkz/manhwss-ext/repo/jar/tachiyomi-es.leercapitulo.lkz-v1.6.1.jar"
+        },
+        "extensionLib": "1.6",
+        "versionCode": "106001",
+        "versionName": "1.6.1",
+        "contentWarning": "CONTENT_WARNING_SAFE",
+        "sources": [
+          {
+            "id": "5621901596522308538",
+            "name": "LeerCapitulo",
+            "language": "es",
+            "homeUrl": "https://www.leercapitulo.co"
+          }
+        ]
+      },
+      {
+        "name": "ManhwaSS",
+        "packageName": "eu.kanade.tachiyomi.extension.es.manhwass",
+        "resources": {
+          "apkUrl": "https://raw.githubusercontent.com/Lenoxlkz/manhwss-ext/repo/apk/tachiyomi-es.manhwass-v1.6.1.apk",
+          "iconUrl": "https://raw.githubusercontent.com/Lenoxlkz/manhwss-ext/repo/icon/eu.kanade.tachiyomi.extension.es.manhwass.png",
+          "jarUrl": "https://raw.githubusercontent.com/Lenoxlkz/manhwss-ext/repo/jar/tachiyomi-es.manhwass-v1.6.1.jar"
+        },
+        "extensionLib": "1.6",
+        "versionCode": "106001",
+        "versionName": "1.6.1",
+        "contentWarning": "CONTENT_WARNING_MIXED",
+        "sources": [
+          {
+            "id": "8539672330434630651",
+            "name": "ManhwaSS",
+            "language": "es",
+            "homeUrl": "https://manhwass.lat"
+          }
+        ]
+      },
+      {
+        "name": "ManhwaWeb",
+        "packageName": "eu.kanade.tachiyomi.extension.es.manhwaweb.lkz",
+        "resources": {
+          "apkUrl": "https://raw.githubusercontent.com/Lenoxlkz/manhwss-ext/repo/apk/tachiyomi-es.manhwaweb.lkz-v1.6.1.apk",
+          "iconUrl": "https://raw.githubusercontent.com/Lenoxlkz/manhwss-ext/repo/icon/eu.kanade.tachiyomi.extension.es.manhwaweb.lkz.png",
+          "jarUrl": "https://raw.githubusercontent.com/Lenoxlkz/manhwss-ext/repo/jar/tachiyomi-es.manhwaweb.lkz-v1.6.1.jar"
+        },
+        "extensionLib": "1.6",
+        "versionCode": "106001",
+        "versionName": "1.6.1",
+        "contentWarning": "CONTENT_WARNING_MIXED",
+        "sources": [
+          {
+            "id": "5943212552955476721",
+            "name": "ManhwaWeb",
+            "language": "es",
+            "homeUrl": "https://manhwaweb.com"
+          }
+        ]
+      },
+      {
+        "name": "Olympus Scanlation",
+        "packageName": "eu.kanade.tachiyomi.extension.es.olympusscanlation.lkz",
+        "resources": {
+          "apkUrl": "https://raw.githubusercontent.com/Lenoxlkz/manhwss-ext/repo/apk/tachiyomi-es.olympusscanlation.lkz-v1.6.1.apk",
+          "iconUrl": "https://raw.githubusercontent.com/Lenoxlkz/manhwss-ext/repo/icon/eu.kanade.tachiyomi.extension.es.olympusscanlation.lkz.png",
+          "jarUrl": "https://raw.githubusercontent.com/Lenoxlkz/manhwss-ext/repo/jar/tachiyomi-es.olympusscanlation.lkz-v1.6.1.jar"
+        },
+        "extensionLib": "1.6",
+        "versionCode": "106001",
+        "versionName": "1.6.1",
+        "contentWarning": "CONTENT_WARNING_SAFE",
+        "sources": [
+          {
+            "id": "1596411039134168890",
+            "name": "Olympus Scanlation",
+            "language": "es",
+            "homeUrl": "https://olympusxyz.com"
+          }
+        ]
+      },
+      {
+        "name": "ZonaTMO.org",
+        "packageName": "eu.kanade.tachiyomi.extension.es.zonatmoorg.lkz",
+        "resources": {
+          "apkUrl": "https://raw.githubusercontent.com/Lenoxlkz/manhwss-ext/repo/apk/tachiyomi-es.zonatmoorg.lkz-v1.6.1.apk",
+          "iconUrl": "https://raw.githubusercontent.com/Lenoxlkz/manhwss-ext/repo/icon/eu.kanade.tachiyomi.extension.es.zonatmoorg.lkz.png",
+          "jarUrl": "https://raw.githubusercontent.com/Lenoxlkz/manhwss-ext/repo/jar/tachiyomi-es.zonatmoorg.lkz-v1.6.1.jar"
+        },
+        "extensionLib": "1.6",
+        "versionCode": "106001",
+        "versionName": "1.6.1",
+        "contentWarning": "CONTENT_WARNING_MIXED",
+        "sources": [
+          {
+            "id": "2838285565505080001",
+            "name": "ZonaTMO.org",
+            "language": "es",
+            "homeUrl": "https://zonatmo.org"
+          }
+        ]
+      }
+    ]
+  }
+}
