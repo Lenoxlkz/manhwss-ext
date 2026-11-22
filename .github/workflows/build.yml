@@ -57,7 +57,7 @@ jobs:
           KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: |
-          MODULES=$(find src -mindepth 2 -maxdepth 2 -type d | sort | sed 's|^src|src:|; s|/|:|g')
+          MODULES=$(find src -mindepth 2 -maxdepth 2 -type d | sort | sed 's|/|:|g; s|^src|:src|')
           TASKS=()
           for module in $MODULES; do
             TASKS+=("$module:assembleRelease" "$module:lintRelease")
